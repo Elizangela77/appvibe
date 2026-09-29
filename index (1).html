@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MatchVibe · Conexões Reais & Seguras</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at 20% 20%, #1a0b2e, #0b0715);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            padding: 16px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Corações flutuantes de fundo */
+        .heart-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart-bg i {
+            position: absolute;
+            color: rgba(255, 42, 95, 0.08);
+            font-size: 28px;
+            animation: floatHeart 14s infinite ease-in-out;
+        }
+
+        .heart-bg i:nth-child(1) { top: 10%; left: 5%; font-size: 40px; animation-duration: 18s; }
+        .heart-bg i:nth-child(2) { top: 70%; left: 90%; font-size: 55px; animation-duration: 22s; }
+        .heart-bg i:nth-child(3) { top: 40%; left: 80%; font-size: 22px; animation-duration: 12s; }
+        .heart-bg i:nth-child(4) { top: 85%; left: 15%; font-size: 35px; animation-duration: 20s; }
+        .heart-bg i:nth-child(5) { top: 20%; left: 70%; font-size: 30px; animation-duration: 16s; }
+        .heart-bg i:nth-child(6) { top: 55%; left: 30%; font-size: 45px; animation-duration: 25s; }
+        .heart-bg i:nth-child(7) { top: 5%; left: 45%; font-size: 20px; animation-duration: 15s; }
+        .heart-bg i:nth-child(8) { top: 90%; left: 60%; font-size: 28px; animation-duration: 19s; }
+
+        @keyframes floatHeart {
+            0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.2; }
+            50% { transform: translateY(-30px) rotate(10deg) scale(1.1); opacity: 0.5; }
+            100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.2; }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            background: rgba(20, 12, 30, 0.75);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 42, 95, 0.2);
+            border-radius: 28px;
+            padding: 22px 20px 18px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 42, 95, 0.1) inset;
+            min-height: 640px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 42, 95, 0.25) inset;
+        }
+
+        /* LOGO com coração */
+        .logo {
+            text-align: center;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .logo h1 {
+            font-size: 26px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff2a5f, #ff7e5f, #ffb347);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .logo h1 i {
+            font-size: 22px;
+            background: linear-gradient(135deg, #ff2a5f, #ff7e5f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulseHeart 1.8s infinite ease-in-out;
+        }
+
+        @keyframes pulseHeart {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.25); }
+        }
+
+        .logo p {
+            font-size: 11px;
+            color: #b0a0c0;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+            font-weight: 300;
+        }
+
+        .logo p i {
+            color: #ff2a5f;
+            margin: 0 2px;
+        }
+
+        /* MENU DE NAVEGAÇÃO */
+        .nav-bar {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 16px;
+            padding: 5px;
+            margin-top: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            gap: 2px;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: #9a8aa8;
+            font-size: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 8px 6px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            flex: 1;
+            position: relative;
+            letter-spacing: 0.3px;
+        }
+
+        .nav-btn i {
+            font-size: 15px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-btn:hover i {
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, #ff2a5f, #ff5e7a);
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(255, 42, 95, 0.5);
+        }
+
+        .nav-btn.active i {
+            transform: scale(1.1);
+        }
+
+        .app-section {
+            display: none;
+            flex: 1;
+            flex-direction: column;
+            animation: fadeIn 0.35s ease;
+        }
+
+        .app-section.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* FORMULÁRIOS */
+        .input-group {
+            margin-bottom: 14px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            color: #d0c0dd;
+            margin-bottom: 5px;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+        }
+
+        .input-group label i {
+            color: #ff2a5f;
+            margin-right: 4px;
+            font-size: 11px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1.5px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            color: #fff;
+            font-size: 13px;
+            outline: none;
+            transition: all 0.25s ease;
+            font-weight: 400;
+        }
+
+        .input-group input::placeholder {
+            color: #7a6a8a;
+            font-weight: 300;
+        }
+
+        .input-group input:focus {
+            border-color: #ff2a5f;
+            box-shadow: 0 0 0 3px rgba(255, 42, 95, 0.15);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #ff2a5f, #ff7e5f);
+            border: none;
+            border-radius: 14px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 6px;
+            box-shadow: 0 8px 25px rgba(255, 42, 95, 0.4);
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-submit i {
+            font-size: 14px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(255, 42, 95, 0.55);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        /* CAIXA DE VERIFICAÇÃO */
+        .verification-box {
+            border: 2px dashed rgba(255, 42, 95, 0.35);
+            border-radius: 16px;
+            padding: 20px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 14px;
+            background: rgba(255, 42, 95, 0.04);
+        }
+
+        .verification-box:hover {
+            border-color: #ff2a5f;
+            background: rgba(255, 42, 95, 0.1);
+            transform: scale(1.01);
+        }
+
+        .verification-box i {
+            font-size: 28px;
+            color: #ff2a5f;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .verification-box p {
+            font-size: 12px;
+            color: #d0c0dd;
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 10.5px;
+            color: #00d2ff;
+            margin-top: 16px;
+            padding: 8px 12px;
+            background: rgba(0, 210, 255, 0.06);
+            border-radius: 30px;
+            border: 1px solid rgba(0, 210, 255, 0.12);
+            font-weight: 400;
+        }
+
+        .security-badge i {
+            font-size: 12px;
+        }
+
+        /* CARD DE DESCOBERTA */
+        .card-container {
+            position: relative;
+            width: 100%;
+            height: 340px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 14px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .card-container:hover {
+            transform: scale(1.01);
+        }
+
+        .card-info {
+            background: linear-gradient(to top, rgba(10, 5, 15, 0.95) 20%, transparent);
+            padding: 22px 18px 16px;
+            width: 100%;
+        }
+
+        .card-info h3 {
+            font-size: 21px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card-info h3 i {
+            color: #00d2ff;
+            font-size: 14px;
+        }
+
+        .card-info p {
+            font-size: 12px;
+            color: #c0b0d0;
+            margin-top: 2px;
+        }
+
+        .swipe-actions {
+            display: flex;
+            justify-content: space-around;
+            gap: 18px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 60px;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-dislike {
+            background: rgba(255, 255, 255, 0.07);
+            color: #ff4a4a;
+            border: 1.5px solid rgba(255, 74, 74, 0.35);
+        }
+
+        .btn-dislike:hover {
+            background: rgba(255, 74, 74, 0.12);
+            border-color: #ff4a4a;
+        }
+
+        .btn-like {
+            background: linear-gradient(135deg, #ff2a5f, #ff7e5f);
+            color: #fff;
+            position: relative;
+        }
+
+        .btn-like i {
+            font-size: 22px;
+        }
+
+        .btn-like:hover {
+            box-shadow: 0 10px 28px rgba(255, 42, 95, 0.6);
+            transform: scale(1.05);
+        }
+
+        .action-btn:active {
+            transform: scale(0.94);
+        }
+
+        /* MATCHES E CHAT */
+        .matches-list {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            scrollbar-width: thin;
+            scrollbar-color: #ff2a5f transparent;
+        }
+
+        .matches-list::-webkit-scrollbar {
+            height: 3px;
+        }
+
+        .matches-list::-webkit-scrollbar-thumb {
+            background: #ff2a5f;
+            border-radius: 10px;
+        }
+
+        .match-avatar {
+            min-width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            border: 2.5px solid #ff2a5f;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(255, 42, 95, 0.3);
+        }
+
+        .match-avatar:hover {
+            transform: scale(1.08);
+            border-color: #ff7e5f;
+            box-shadow: 0 6px 20px rgba(255, 42, 95, 0.5);
+        }
+
+        .match-avatar::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            background: #00d2ff;
+            border-radius: 50%;
+            border: 2px solid #140c1e;
+        }
+
+        .chat-box {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 16px;
+            padding: 12px;
+            overflow-y: auto;
+            max-height: 170px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            scrollbar-width: thin;
+            scrollbar-color: #ff2a5f transparent;
+        }
+
+        .chat-box::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .chat-box::-webkit-scrollbar-thumb {
+            background: #ff2a5f;
+            border-radius: 10px;
+        }
+
+        .message {
+            padding: 9px 14px;
+            border-radius: 16px;
+            font-size: 12px;
+            max-width: 82%;
+            line-height: 1.4;
+            animation: msgPop 0.3s ease;
+            word-wrap: break-word;
+        }
+
+        @keyframes msgPop {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.received {
+            background: rgba(255, 255, 255, 0.08);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .message.sent {
+            background: linear-gradient(135deg, #ff2a5f, #ff5e7a);
+            color: #fff;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 4px 12px rgba(255, 42, 95, 0.25);
+        }
+
+        .chat-input-area {
+            display: flex;
+            gap: 8px;
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1.5px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 12px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .chat-input-area input:focus {
+            border-color: #ff2a5f;
+        }
+
+        .chat-input-area input::placeholder {
+            color: #7a6a8a;
+        }
+
+        .chat-input-area button {
+            padding: 0 18px;
+            background: linear-gradient(135deg, #ff2a5f, #ff7e5f);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .chat-input-area button:hover {
+            box-shadow: 0 6px 18px rgba(255, 42, 95, 0.5);
+            transform: scale(1.02);
+        }
+
+        .chat-input-area button i {
+            font-size: 12px;
+        }
+
+        /* VIP */
+        .vip-card {
+            background: linear-gradient(145deg, rgba(255, 42, 95, 0.12), rgba(255, 126, 95, 0.08));
+            border: 1.5px solid rgba(255, 42, 95, 0.4);
+            border-radius: 20px;
+            padding: 20px 16px;
+            text-align: center;
+            margin-bottom: 14px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255, 42, 95, 0.15);
+        }
+
+        .vip-card::before {
+            content: '✨';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 60px;
+            opacity: 0.1;
+            transform: rotate(20deg);
+        }
+
+        .vip-card h2 {
+            font-size: 21px;
+            background: linear-gradient(135deg, #ff7e5f, #ffb347, #ff2a5f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .vip-card h2 i {
+            font-size: 20px;
+        }
+
+        .vip-price {
+            font-size: 26px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .vip-price span {
+            font-size: 12px;
+            color: #b0a0c0;
+            font-weight: 400;
+        }
+
+        .vip-benefits {
+            text-align: left;
+            font-size: 12px;
+            color: #d0c0dd;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            margin-bottom: 16px;
+            padding: 0 6px;
+        }
+
+        .vip-benefits div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            line-height: 1.3;
+        }
+
+        .vip-benefits i {
+            color: #ff2a5f;
+            font-size: 13px;
+            width: 18px;
+            text-align: center;
+        }
+
+        .vip-benefits strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* Coração pulsante extra */
+        .heart-pulse {
+            animation: pulseHeart 2s infinite;
+            display: inline-block;
+        }
+
+        /* Responsivo */
+        @media (max-width: 440px) {
+            .container {
+                padding: 18px 14px 14px;
+                min-height: 600px;
+                border-radius: 24px;
+            }
+            .logo h1 {
+                font-size: 23px;
+            }
+            .card-container {
+                height: 300px;
+            }
+            .nav-btn {
+                font-size: 9px;
+                padding: 6px 3px;
+            }
+            .nav-btn i {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Corações flutuantes no fundo -->
+    <div class="heart-bg">
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-heart"></i>
+    </div>
+
+    <div class="container">
+        <div>
+            <div class="logo">
+                <h1>
+                    <i class="fas fa-heart heart-pulse"></i>
+                    MatchVibe
+                    <i class="fas fa-heart heart-pulse" style="animation-delay: 0.4s;"></i>
+                </h1>
+                <p><i class="fas fa-shield-alt"></i> Conexões reais, seguras e cheias de <i class="fas fa-heart"></i></p>
+            </div>
+
+            <!-- Menu de Abas -->
+            <div class="nav-bar">
+                <button class="nav-btn active" onclick="switchTab('login')">
+                    <i class="fas fa-sign-in-alt"></i> Acesso
+                </button>
+                <button class="nav-btn" onclick="switchTab('verify')">
+                    <i class="fas fa-id-card"></i> ID Check
+                </button>
+                <button class="nav-btn" onclick="switchTab('discover')">
+                    <i class="fas fa-compass"></i> Descobrir
+                </button>
+                <button class="nav-btn" onclick="switchTab('chat')">
+                    <i class="fas fa-comment-dots"></i> Chat
+                </button>
+                <button class="nav-btn" onclick="switchTab('vip')" style="color: #ffb347;">
+                    <i class="fas fa-crown"></i> VIP
+                </button>
+            </div>
+        </div>
+
+        <!-- 1. SEÇÃO DE LOGIN -->
+        <div id="login-section" class="app-section active">
+            <form onsubmit="handleLogin(event)" style="margin-top: 16px;">
+                <div class="input-group">
+                    <label><i class="fas fa-envelope"></i> E-mail ou Telefone</label>
+                    <input type="text" placeholder="seu@email.com" required>
+                </div>
+                <div class="input-group">
+                    <label><i class="fas fa-lock"></i> Senha Segura</label>
+                    <input type="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-submit">
+                    <i class="fas fa-heart"></i> Entrar na Conta
+                </button>
+            </form>
+            <div class="security-badge">
+                <i class="fas fa-shield-alt"></i> Criptografia ativa · Proteção de dados
+            </div>
+        </div>
+
+        <!-- 2. SEÇÃO DE VERIFICAÇÃO DE IDENTIDADE -->
+        <div id="verify-section" class="app-section">
+            <div style="margin-top: 12px;">
+                <p style="font-size: 12px; color: #c0b0d0; margin-bottom: 14px; text-align: center; line-height: 1.5;">
+                    <i class="fas fa-check-circle" style="color: #00d2ff;"></i> 
+                    Garanta o selo de perfil verificado e evite perfis falsos na plataforma.
+                </p>
+                <div class="verification-box" onclick="alert('📸 Câmera de biometria facial simulada com sucesso!')">
+                    <i class="fas fa-camera"></i>
+                    <p><strong>Validar Biometria Facial</strong></p>
+                    <p style="font-size: 10px; color: #8a7a9a; margin-top: 4px;">Toque para iniciar a verificação</p>
+                </div>
+                <div class="input-group">
+                    <label><i class="fas fa-id-card"></i> Número do Documento (CPF/RG)</label>
+                    <input type="text" placeholder="000.000.000-00" required>
+                </div>
+                <button type="button" class="btn-submit" onclick="alert('📄 Identidade enviada para verificação!')">
+                    <i class="fas fa-paper-plane"></i> Enviar Documento
+                </button>
+            </div>
+            <div class="security-badge">
+                <i class="fas fa-robot"></i> Validação Anti-Fraude com IA
+            </div>
+        </div>
+
+        <!-- 3. SEÇÃO DE DESCOBERTA (SWIPE) -->
+        <div id="discover-section" class="app-section">
+            <div id="profile-card" class="card-container" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=60');">
+                <div class="card-info">
+                    <h3>Camila, 26 <i class="fas fa-check-circle"></i></h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Designer • 3 km de distância</p>
+                </div>
+            </div>
+            <div class="swipe-actions">
+                <button class="action-btn btn-dislike" onclick="nextProfile()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <button class="action-btn btn-like" onclick="triggerMatch()">
+                    <i class="fas fa-heart"></i>
+                </button>
+            </div>
+            <p style="text-align: center; font-size: 10px; color: #7a6a8a; margin-top: 10px;">
+                <i class="fas fa-chevron-left"></i> Deslize para descobrir <i class="fas fa-chevron-right"></i>
+            </p>
+        </div>
+
+        <!-- 4. SEÇÃO DE MATCHES E CHAT -->
+        <div id="chat-section" class="app-section">
+            <p style="font-size: 12px; color: #b0a0c0; margin-bottom: 10px; font-weight: 500;">
+                <i class="fas fa-heart" style="color: #ff2a5f;"></i> Novos Matches
+            </p>
+            <div class="matches-list">
+                <div class="match-avatar" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=60');" onclick="selectChat('Camila')"></div>
+                <div class="match-avatar" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60');" onclick="selectChat('Lucas')"></div>
+                <div class="match-avatar" style="background-image: url('https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=60');" onclick="selectChat('Beatriz')"></div>
+            </div>
+
+            <p style="font-size: 12px; color: #b0a0c0; margin-bottom: 6px; font-weight: 500;" id="chat-title">
+                <i class="fas fa-comment"></i> Conversa com Camila
+            </p>
+            <div class="chat-box" id="chat-messages">
+                <div class="message received">Oie! Tudo bem? Vi que também curte tecnologia! 🚀</div>
+                <div class="message sent">Tudo ótimo! Sim, sou apaixonado pela área. E você?</div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="message-input" placeholder="Digite sua mensagem...">
+                <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i> Enviar</button>
+            </div>
+        </div>
+
+        <!-- 5. SEÇÃO DO PLANO VIP -->
+        <div id="vip-section" class="app-section">
+            <div class="vip-card">
+                <h2><i class="fas fa-crown"></i> MatchVibe VIP</h2>
+                <div class="vip-price">R$ 20,00 <span>/ mês</span></div>
+                <div class="vip-benefits">
+                    <div><i class="fas fa-heart"></i> <span><strong>Curtidas Ilimitadas:</strong> Veja quem te curtiu antes do match.</span></div>
+                    <div><i class="fas fa-rocket"></i> <span><strong>Destaque no Perfil:</strong> Apareça para até 5x mais pessoas.</span></div>
+                    <div><i class="fas fa-shield-alt"></i> <span><strong>Selo de Verificação Ouro:</strong> Prioridade máxima na segurança.</span></div>
+                    <div><i class="fas fa-comments"></i> <span><strong>Mensagens Diretas:</strong> Envie mensagens antes do match.</span></div>
+                </div>
+                <!-- Botão alterado para um link direto de pagamento -->
+                <a href="https://mpago.la/1yrD2XX" target="_blank" rel="noopener noreferrer" class="btn-submit" style="text-decoration: none; display: flex;">
+                    <i class="fas fa-crown"></i> Assinar Plano VIP
+                </a>
+            </div>
+            <div class="security-badge">
+                <i class="fas fa-lock"></i> Cancele quando quiser · Pagamento 100% seguro
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.app-section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId + '-section').classList.add('active');
+            
+            const buttons = document.querySelectorAll('.nav-btn');
+            const map = { 'login': 0, 'verify': 1, 'discover': 2, 'chat': 3, 'vip': 4 };
+            if(map[tabId] !== undefined) {
+                buttons[map[tabId]].classList.add('active');
+            }
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            alert('💖 Login efetuado com segurança! Redirecionando para as descobertas...');
+            switchTab('discover');
+        }
+
+        const profiles = [
+            { name: "Camila, 26", bio: "Designer • 3 km", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=60" },
+            { name: "Matheus, 28", bio: "Engenheiro de Software • 5 km", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60" },
+            { name: "Juliana, 24", bio: "Fotógrafa • 1 km", img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=60" },
+            { name: "Rafael, 30", bio: "Músico • 4 km", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=60" }
+        ];
+        let currentProfileIndex = 0;
+
+        function nextProfile() {
+            currentProfileIndex = (currentProfileIndex + 1) % profiles.length;
+            const p = profiles[currentProfileIndex];
+            const card = document.getElementById('profile-card');
+            card.style.backgroundImage = `url('${p.img}')`;
+            card.querySelector('.card-info').innerHTML = `
+                <h3>${p.name} <i class="fas fa-check
